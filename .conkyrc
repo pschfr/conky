@@ -1,0 +1,71 @@
+# Paul's Conky configuration!
+# https://github.com/pschfr/conky
+use_xft yes
+xftfont mono:size=10
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_class Conky
+own_window_type normal
+own_window_argb_visual yes
+own_window_argb_value 180
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+maximum_width 200
+draw_outline no
+draw_borders no
+default_color FFF
+default_shade_color 000
+default_outline_color FFF
+alignment top_right
+no_buffers yes
+cpu_avg_samples 2
+override_utf8_locale no
+TEXT
+${font mono:bold:size=10}${alignc}${execi 60 lsb_release -d | cut -f 2}
+${font}${alignc}${kernel}
+${font mono:bold:size=10}${alignc}${execi 3600 aptitude search "~U" | wc -l} ${font}updates available
+
+${font mono:bold:size=10}uptime${font}${alignr}${uptime}
+${font mono:bold:size=10}${wireless_essid} ${font}${alignr}${addr wlo1}
+${font mono:bold:size=10}battery${font}${alignr}${battery_percent BAT0}%
+
+
+${font mono:bold:size=10}CPU${font}${alignr}${freq_g}GHz
+${cpugraph cpu0}
+
+${font mono:bold:size=10}RAM${font}${alignr}$mem
+${memgraph}
+
+
+${font mono:bold:size=10}root${font}${alignr}${fs_used_perc /}% of ${fs_size /}
+${fs_bar /}${if_mounted /media/paul/ENIGMA}
+${font mono:bold:size=10}enigma${font}${alignr}${fs_used_perc /media/paul/ENIGMA}% of ${fs_size /media/paul/ENIGMA}
+${fs_bar /media/paul/ENIGMA}$endif
+
+
+${font mono:bold:size=10}Dropbox ${hr}
+${font}${execi 6 dropbox status}
+
+${font mono:bold:size=10}pschfr.github.io ${hr}
+${font}${execi 6 cd ~/Dropbox/Work/pschfr.github.io; git st -s}
+
+${font mono:bold:size=10}Start ${hr}
+${font}${execi 6 cd ~/Dropbox/Work/Start; git st -s}
+
+${font mono:bold:size=10}dotfiles ${hr}
+${font}${execi 6 cd ~/Dropbox/Work/dotfiles; git st -s}
+
+${execi 300 curl -s "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D2473224&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys" -o ~/.weather.xml}
+${font mono:bold:size=10}Weather ${hr}
+${font}temperature ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} degrees
+${font}condition ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
+${font}wind ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:wind" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 2p} ${execi 300 grep "yweather:units" ~/weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
+
+${if_running rhythmbox}${font mono:bold:size=10}
+${font mono:bold:size=10}${alignc}${exec rhythmbox-client --print-playing-format %ta}
+${font mono:size=10}${alignc}${exec rhythmbox-client --print-playing-format %tt}
+${font mono:size=10}${alignc}${exec rhythmbox-client --print-playing-format "[ %te / %td ]"}
+${endif}
