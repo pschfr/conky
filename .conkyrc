@@ -57,9 +57,3 @@ ${font mono:bold:size=10}Weather ${hr}
 ${font}temperature ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} degrees
 ${font}condition ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
 ${font}wind ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:wind" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 2p} ${execi 300 grep "yweather:units" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
-
-${if_running rhythmbox}${font mono:bold:size=10}
-${font mono:bold:size=10}${alignc}${exec rhythmbox-client --print-playing-format %ta}
-${font mono:size=10}${alignc}${exec rhythmbox-client --print-playing-format %tt}
-${font mono:size=10}${alignc}${exec rhythmbox-client --print-playing-format "[ %te / %td ]"}
-${endif}
