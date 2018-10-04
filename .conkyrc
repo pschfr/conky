@@ -30,7 +30,7 @@ ${font mono:bold:size=10}${alignc}${execi 3600 aptitude search "~U" | wc -l} ${f
 
 ${font mono:bold:size=10}uptime${font}${alignr}${uptime}
 ${font mono:bold:size=10}${wireless_essid} ${font}${alignr}${addr wlo1}
-${font mono:bold:size=10}battery${font}${alignr}${battery_percent BAT0}%
+${font mono:bold:size=10}battery${font}${alignr}${battery_short}
 
 
 ${font mono:bold:size=10}CPU${font}${alignr}${freq_g}GHz
