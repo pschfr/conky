@@ -54,6 +54,6 @@ ${font}${execi 6 /home/paul/Dropbox/Work/status/status.sh -dmb | xargs}
 
 ${execi 300 curl -s "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D2473224&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys" -o ~/.weather.xml}
 ${font mono:bold:size=10}Weather ${hr}
-${font}temperature ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} degrees
-${font}condition ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
-${font}wind ${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:wind" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 2p} ${execi 300 grep "yweather:units" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
+${font}${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} degrees
+${font}${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:condition" ~/.weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
+${font}${alignr}${font mono:bold:size=10}${execi 300 grep "yweather:wind" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 2p} ${execi 300 grep "yweather:units" ~/.weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | sed -n 1p}
