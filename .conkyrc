@@ -23,13 +23,14 @@ conky.config = {
     alignment = top_right,
     no_buffers = true,
     cpu_avg_samples = 2,
-    override_utf8_locale = false
+    override_utf8_locale = false,
+    background = true
 };
 conky.text = [[
     ${execp /home/paul/Dropbox/Work/conky/wal-colors.sh -f}
     ${font mono:bold:size=10}${alignc}${execi 60 lsb_release -d | cut -f 2}
     ${font}${alignc}${kernel}
-    ${font mono:bold:size=10}${alignc}${execi 3600 aptitude search "~U" | wc -l} ${font}updates available
+    ${font mono:bold:size=10}${alignc}${execi 3600 checkupdates | wc -l} ${font}updates available
 
     ${font mono:bold:size=10}uptime${font}${alignr}${uptime}
     ${font mono:bold:size=10}${wireless_essid} ${font}${alignr}${addr wlo1}
