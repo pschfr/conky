@@ -45,11 +45,12 @@ conky.text = [[
 
 
     ${font mono:bold:size=10}root${font}${alignr}${fs_used_perc /}% of ${fs_size /}
+    ${fs_bar /}
 ]]
 
 --    Disabled Stuffs for now
 --
---    ${fs_bar /}${if_mounted /media/paul/ENIGMA}
+--    ${if_mounted /media/paul/ENIGMA}
 --    ${font mono:bold:size=10}enigma${font}${alignr}${fs_used_perc /media/paul/ENIGMA}% of ${fs_size /media/paul/ENIGMA}
 --    ${fs_bar /media/paul/ENIGMA}$endif
 --
