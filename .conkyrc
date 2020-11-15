@@ -14,7 +14,7 @@ conky.config = {
     own_window_argb_value = 180,
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     double_buffer = true,
-    maximum_width = 200,
+    maximum_width = 250,
     draw_outline = false,
     draw_borders = false,
     default_color = '#FFF',
@@ -33,7 +33,7 @@ conky.text = [[
     ${font mono:bold:size=10}${alignc}${execi 3600 checkupdates | wc -l} ${font}updates available
 
     ${font mono:bold:size=10}uptime${font}${alignr}${uptime}
-    ${font mono:bold:size=10}${wireless_essid} ${font}${alignr}${addr wlo1}
+    ${font mono:bold:size=10}${execi 3600 nmcli -t -f active,ssid dev wifi | egrep yes | cut -d ':' -f2} ${font}${alignr}${addr wlo1}
     ${font mono:bold:size=10}battery${font}${alignr}${battery}
 
 
