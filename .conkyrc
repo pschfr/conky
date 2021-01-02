@@ -8,11 +8,12 @@ conky.config = {
     total_run_times = 0,
     own_window = true,
     own_window_transparent = true,
-    own_window_class = Conky,
-    own_window_type = normal,
+    own_window_class = 'Conky',
+    own_window_type = 'normal',
     own_window_argb_visual = true,
     own_window_argb_value = 180,
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    gap_y = 0,
     double_buffer = true,
     maximum_width = 250,
     draw_outline = false,
@@ -27,8 +28,7 @@ conky.config = {
     background = true
 };
 conky.text = [[
-    ${execp /home/paul/Dropbox/Work/conky/wal-colors.sh -f}
-    ${font mono:bold:size=10}${alignc}${execi 60 lsb_release -d | cut -f 2}
+    ${execp /home/paul/Dropbox/Work/conky/wal-colors.sh -f}${font mono:bold:size=10}${alignc}${execi 60 lsb_release -d | cut -f 2}
     ${font}${alignc}${kernel}
     ${font mono:bold:size=10}${alignc}${execi 3600 checkupdates | wc -l} ${font}updates available
 
@@ -49,7 +49,7 @@ conky.text = [[
 
 
     ${font mono:bold:size=10}Git Repos ${hr}
-    ${font}${execi 6 /home/paul/Dropbox/Work/status/status.sh -dmb | xargs}
+    ${font}${execi 6 /home/paul/Dropbox/Work/status/status.sh -dmb | xargs | fmt -w 18 -g 18}
 ]]
 
 --    Disabled Stuffs for now
